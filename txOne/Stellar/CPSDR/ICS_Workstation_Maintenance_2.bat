@@ -41,8 +41,7 @@ echo.
 
 REM Step 5: Check Service Status
 echo Checking the status of important services...
-sc query "Windows Update"
-sc query "StellarProtectService"  REM Example service (replace with actual service name)
+sc query StellarProtectService  REM Example service (replace with actual service name)
 
 REM Step 6: Disk Cleanup (Optional)
 echo Performing disk cleanup...
