@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-TOKEN="eyJ1cmwiOiAiaHR0cHM6Ly9hcHNlMS0yMDAxLnNlbnRpbmVsb25lLm5ldCIsICJzaXRlX2tleSI6ICJiZTY1MjFjMWY0NDBmYWZkIn0=" # Replace this with your actual token
+TOKEN="token" # Replace this with your actual token
 TOKEN_FILE="./com.sentinelone.registration-token"
 INSTALLER_PKG="./Sentinel-Release-24-1-3-7587_macos_v24_1_3_7587.pkg" # Replace with the actual installer package name
 TMP_DIR="/tmp"
