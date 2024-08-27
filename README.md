@@ -2,7 +2,7 @@
 
 This is collection of Tools and documents use for PoC.
 
-# For Akamai datastream
+# For Akamai datastream custom HTTPS endpoint
 
 To run script in background
 Terminate existing script process:
