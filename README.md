@@ -18,9 +18,9 @@ Run the script in background
 sudo nohup python3 akamai_fw_datastream_cef.py &
 ```
 
-# For Encryption process
+# Scripts/Encrypt - Ransomeware simulation file
 
 - Download Simulated-Ransomware.zip and extract the EXE file.
 - Run the EXE file to start encryption process.
 
-NOTE: It will encrypt file on C:\temp only
+"NOTE: This will encrypt files only in the C:\temp directory. To modify the script, you should download the PowerShell version and convert your customized version to an EXE file instead."
